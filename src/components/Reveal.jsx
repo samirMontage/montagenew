@@ -1,0 +1,18 @@
+import { motion } from 'framer-motion'
+
+/** Плавное появление при прокрутке. */
+export default function Reveal({ children, delay = 0, y = 28, className = '', as = 'div', style }) {
+  const M = motion[as] || motion.div
+  return (
+    <M
+      className={className}
+      style={style}
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.85, delay, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </M>
+  )
+}
